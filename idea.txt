@@ -1,0 +1,367 @@
+Por lo que me has contado, la idea de VeriLink es desarrollar una extensión de navegador para ayudar a los usuarios a identificar posibles estafas digitales. Esa sería la base que podemos convertir en un Producto Mínimo Viable.
+
+Una aclaración: el archivo de propuesta de valor que compartiste anteriormente solo muestra la portada y los integrantes del equipo; no contiene suficiente información para confirmar todas las funciones originales de VeriLink. Por eso, te propongo un diseño concreto que pueden usar como primera versión y ajustar a lo que diga su presentación.
+
+## 1. ¿Qué haría exactamente VeriLink?
+
+VeriLink sería una extensión para navegadores como Google Chrome que analiza las direcciones web que visita una persona y le advierte cuando detecta señales sospechosas.
+
+1. El usuario entra a un enlace
+
+Por ejemplo, recibe un mensaje que lo invita a iniciar sesión en una página bancaria.
+
+2. VeriLink analiza la dirección
+
+Busca señales como dominios extraños, nombres que imitan marcas o direcciones incluidas en una lista de sitios reportados.
+
+3. Muestra una advertencia
+
+Indica qué señales encontró y recomienda al usuario verificar el sitio antes de introducir datos personales o bancarios.
+
+La idea no sería prometer que VeriLink detecta todas las estafas, sino ayudar a reconocer riesgos antes de que el usuario confíe en una página.
+
+## 2. Funciones que debería tener el PMV
+
+Yo empezaría con cuatro funciones principales. Son suficientes para demostrar la idea sin intentar desarrollar desde el inicio un sistema de ciberseguridad demasiado complejo.
+
+![I Built a Chrome Extension That Stops Malicious URLs Before You Click | by H3NRY B41T | Feb, 2026 | Medium](https://images.openai.com/static-rsc-4/kPNAZVXZMUC6yE8RR8JGxAhYVlNNS7bGm6e_5d5-yH8VyK_75KlKaSSpllq9_B9lJ2TBGn09rc64X22kMIPAOhBjqTfC1nllx7TlfwKxV_Tn3cJlhP-D0Cq_8bedmb9uS5EfwlGfqVjPmNKNaLUArc9hpTHx-8-nR_nJIaKYl2g?purpose=inline)
+
+Checking Favorites status
+
+1. Analizador de enlaces
+
+Imprescindible
+
+El usuario puede copiar una URL y analizarla desde la extensión. VeriLink revisa señales como:
+
+* Dominios con errores ortográficos que imitan marcas conocidas.
+
+* Direcciones con estructuras extrañas.
+
+* Dominios incluidos en una lista de sitios reportados.
+
+Resultado: riesgo bajo, medio o alto, según las reglas definidas.
+
+![Dashlane Premium Just Got Smarter: AI-Powered Scam Protection Is Here](https://images.openai.com/static-rsc-4/5JXGarfMWA2gm5sfuSU_YYq8xOVdq4RFkKL9v21XoQzXa3cFc5Mqse2ZG8_4YW1Y-A6-gZjwgK-8Dx9q-CanJWg_-_w8knlfhSkwPhkwcNsOsHaNPv62fWNGE9LTuOwiafL22zkCO-zNAlphqomIWHtPFChnMKHMuqLiDREDAWs?purpose=inline)
+
+Checking Favorites status
+
+2. Alertas de seguridad
+
+Imprescindible
+
+Si detecta señales sospechosas, muestra una advertencia con el motivo.
+
+Por ejemplo: “Este dominio contiene una palabra que intenta imitar el nombre de una marca conocida”.
+
+En una versión posterior podría mostrar la alerta automáticamente al visitar un sitio.
+
+![SafeLinkScanner - URL Security Analysis Tool | Devpost](https://images.openai.com/static-rsc-4/uJm2fyqZktXptwltOVRDK6c6rN_Vz3VtJBvPDfFF0SgQdha-gy1_k-9SofCGGOTYU1j5uN0E-okSkKGh9VWd2lXbaG73WcU67xRmKlSzRGZwRbsasCPMqFqO5yBxifyDQgC_WUkcYqvU-7CSik93zu9Jf7mIZQlQWG1PA3RlSwI?purpose=inline)
+
+Checking Favorites status
+
+3. Explicación del riesgo
+
+En lugar de mostrar solamente un color rojo o verde, VeriLink explica qué encontró y qué debería hacer el usuario.
+
+Ejemplo: “No ingreses contraseñas todavía. Verifica la dirección desde la página oficial de la empresa”.
+
+![CryptoGuard - Your Safety Pal](https://images.openai.com/static-rsc-4/nm_ssJMCPfP123lXWD-pGSMxnW96TkJq6-DmMUggjaw1wcuJwBe80N-xKq3rtzb9KwlIICWGEH-iUytxM8yJYhw_JTcA1QKwX0RZQSWpiAKpqUxCMDrp3uXM6qKPIfReG8XRoyODzp6EXsiTx2soyQZIOs2kx4FWwRrMrumsDB4?purpose=inline)
+
+Checking Favorites status
+
+4. Retroalimentación del usuario
+
+Después del análisis, el usuario puede indicar si la advertencia le pareció útil o si considera que el sitio es legítimo.
+
+Esto permite evaluar si el PMV resulta comprensible y útil para las personas.
+
+Estas funciones son una propuesta de diseño basada en la misión de VeriLink: detectar señales sospechosas, explicar los riesgos y proporcionar recomendaciones sencillas.
+
+Misión VeriLink: Navegación Segura.png
+
+## 3. ¿Cómo se desarrollaría la extensión?
+
+Para que entiendas qué tendrían que programar, la dividiría en estas partes:
+
+Extensión de Chrome
+
+Ventana emergente con campo para pegar un enlace y botón Analizar.
+
+Motor de análisis
+
+JavaScript revisa la URL y aplica reglas para identificar señales de riesgo.
+
+Fuentes de información
+
+Lista de dominios de prueba y, en una versión más avanzada, una fuente externa de reputación.
+
+Resultado para el usuario
+
+Nivel de riesgo, señales encontradas y recomendaciones.
+
+### Tecnologías que podrían utilizar
+
+| Tecnología                      | Para qué serviría                                         |
+| ------------------------------- | --------------------------------------------------------- |
+| HTML                            | Crear la estructura de la ventana de la extensión.        |
+| CSS                             | Diseñar la interfaz azul de VeriLink.                     |
+| JavaScript                      | Analizar las URL y mostrar los resultados.                |
+| Chrome Extensions Manifest V3   | Definir los permisos y el funcionamiento de la extensión. |
+| Una API de reputación, opcional | Consultar información externa sobre sitios peligrosos.    |
+
+Para el primer prototipo no necesitan entrenar una inteligencia artificial ni desarrollar una base de datos compleja. Pueden comenzar con reglas de detección y un conjunto pequeño de enlaces de prueba.
+
+Importante: revisar una URL mediante reglas propias no garantiza detectar una estafa. El HTTPS o el candado tampoco garantizan que una página sea legítima. Para tener una detección más confiable, después podrían integrar una fuente especializada de reputación de URL.
+
+## 4. ¿Qué incluiría exactamente la primera versión?
+
+Para que no se vuelva demasiado difícil para un proyecto universitario, delimitaría el alcance de esta manera:
+
+## VeriLink — PMV versión 1.0
+
+Funciones que sí se desarrollarían para la demostración.
+
+Campo para pegar una URL
+
+El usuario introduce el enlace que quiere revisar.
+
+Botón para analizar
+
+Inicia la revisión de la dirección.
+
+Detección de señales sospechosas
+
+Aplica reglas definidas y compara con una lista de prueba.
+
+Resultado visual
+
+Muestra riesgo bajo, medio o alto y los motivos encontrados.
+
+Recomendaciones de seguridad
+
+Explica cómo actuar antes de compartir información.
+
+Botón para enviar opinión
+
+Permite evaluar la utilidad de los resultados.
+
+6 de 6 funciones seleccionadas
+
+Copiar funciones seleccionadas
+
+Dejaría para futuras versiones el bloqueo automático de sitios, el análisis de mensajes de WhatsApp, la detección de archivos maliciosos y el uso de inteligencia artificial avanzada. Eso aumentaría mucho la dificultad y no es necesario para demostrar el concepto inicial.
+
+## 5. ¿Y qué papel tendría tu página web?
+
+Aquí está la diferencia importante para tu entrega:
+
+* La página web de presentación explica qué es VeriLink, cuál es el problema, cómo funciona la solución y cuáles son sus beneficios.
+
+* La extensión es el producto que el usuario instala y utiliza para analizar enlaces.
+
+Puedes mostrar ambas cosas en una sola demostración: una web con el diseño de VeriLink y un botón para probar un analizador funcional. Si todavía no consiguen instalar la extensión en Chrome, pueden hacer primero una simulación funcional en la web, pero deben presentarla como prototipo web, no como una extensión ya terminada.
+
+## 6. ¿Cómo comprobarían si el PMV funciona?
+
+Su estrategia no debería ser solo terminar de programar. También deben probar si la propuesta resuelve el problema.
+
+1. Preparar un conjunto de enlaces legítimos y enlaces de prueba sospechosos.
+
+2. Analizarlos con VeriLink.
+
+3. Comparar los resultados con la clasificación que definieron previamente.
+
+4. Pedir a algunos usuarios que prueben la interfaz.
+
+5. Registrar cuántos enlaces clasifica correctamente, cuántas alertas equivocadas produce y si los usuarios entienden las recomendaciones.
+
+6. Ajustar las reglas y la interfaz con base en los resultados.
+
+No conviene medir el éxito solo por la cantidad de enlaces analizados: también importa evitar falsas alarmas y no presentar como seguro un sitio que realmente es peligroso.
+
+Mi recomendación final: desarrollen una extensión sencilla que permita pegar una URL, analizarla y explicar el resultado. Es un alcance razonable para estudiantes que están construyendo un PMV y demuestra la función principal de VeriLink.
+
+El siguiente paso es decidir cómo van a implementarlo: ¿su profesor exige que sea una extensión real instalable en Chrome, o acepta una página web funcional que simule y demuestre el funcionamiento de VeriLink? Esto cambia bastante el desarrollo que necesitan realizar.
+
+Si quieres, puedo:
+
+* Propón un plan detallado de pruebas para validar VeriLink en un entorno universitario
+
+* Sugiere mejoras y funciones para una segunda versión de VeriLink basada en este PMV
+
+* Detalla cómo implementar técnicamente el motor de análisis en JavaScript para VeriLink
+
+
+Para dar a conocer su proyecto en una página web, no basta con poner qué hace la extensión. La página debe explicar el problema que resuelve, cómo ayuda a las personas, cuáles son sus funciones y por qué sería útil instalarla. Como su proyecto busca prevenir las estafas digitales mediante una extensión para el navegador, les propongo organizar la página de una manera profesional, como si realmente fueran a presentar su producto al público.
+
+# 1. ¿Qué información pondríamos en la página web?
+
+![Haven Launches AI Security Companion to Stop Next-Generation Phishing | Haven](https://images.openai.com/static-rsc-4/WuHwM5oEMEetJVVN5N_qr2Wuuc9W_oM-aSgTL0HDsbfzI-qifw8bS8QMwJec9btIVZOh4weoKDrj_L_in6Q-iR7I-NvpgnkINk76Z5jEQziGjW59QDNxT6SvgQ0eF80pphQfXdBl0htM9e4Ohgdk8mAQD4Z8_BGEWKeCl6lwmC4?purpose=inline)
+
+Checking Favorites status
+
+1. Inicio: presentar la extensión
+
+Es la primera sección que verá el visitante. Debe tener el nombre del proyecto, una frase que llame la atención, una explicación breve y un botón para conocer cómo funciona.
+
+Ejemplo de frase:
+
+“Navega con confianza. Identifica las señales de una posible estafa antes de caer en ella”.
+
+![How to Avoid Phishing Scams and Stay Safe Online | Fanclan Blog](https://images.openai.com/static-rsc-4/p79Ml4FNzw1y5a3UMm8eALHmelH6RIF-rwIeEJ7Ne9nE8NnfyhomSB7WGjPpyG7sFYCd7oAWCf3VLnwJr-pR_T5HNh69yn-_eUWTEKMg2NopiSxmJ2MltlRxSB3SiSkW5bgIElYf1I3JwwEMFdFrU7_zgICItxbOvllKblAxc78?purpose=inline)
+
+Checking Favorites status
+
+2. El problema que queremos resolver
+
+Explicar que diariamente las personas reciben mensajes, enlaces y páginas falsas que imitan a bancos, tiendas, empresas de paquetería e incluso conocidos. Estas estafas buscan obtener información personal, contraseñas o dinero aprovechándose de la confianza, el miedo y la urgencia.
+
+![Dashlane Premium Just Got Smarter: AI-Powered Scam Protection Is Here](https://images.openai.com/static-rsc-4/5JXGarfMWA2gm5sfuSU_YYq8xOVdq4RFkKL9v21XoQzXa3cFc5Mqse2ZG8_4YW1Y-A6-gZjwgK-8Dx9q-CanJWg_-_w8knlfhSkwPhkwcNsOsHaNPv62fWNGE9LTuOwiafL22zkCO-zNAlphqomIWHtPFChnMKHMuqLiDREDAWs?purpose=inline)
+
+Checking Favorites status
+
+3. ¿Cómo funciona nuestra extensión?
+
+Describir el proceso de uso: el usuario encuentra un enlace o una página sospechosa, la extensión analiza las señales disponibles y muestra una advertencia con una explicación del posible riesgo y recomendaciones para actuar.
+
+![I Built a Chrome Extension That Stops Malicious URLs Before You Click | by H3NRY B41T | Medium](https://images.openai.com/static-rsc-4/9Mbc1KvM5fFuHPVt51e7q90iNOT9ENJK_OlcVogE7k9yYxRbAxFOjZjpMgNQoma90lQ1wLRBUr9jC0Ie2xXLaEIYRtwb2GH4LxWvH6SN2ssem43oFqUfktrraHYNLDTHjeSPv_CeU-UY0-a1agxxwwmdGQcinLtoHOLJFc_u7R4?purpose=inline)
+
+Checking Favorites status
+
+4. Funciones principales
+
+Mostrar las herramientas más importantes, como la detección de señales sospechosas, las alertas preventivas, la explicación del riesgo y las recomendaciones de seguridad. Cada función debe tener una breve descripción.
+
+![A Young attractive guy is browsing at his laptop, sitting at home on the cozy beige sofa at home, wearing casual outfit](https://images.openai.com/static-rsc-4/ZQUKzPvA67vnaYQYlVAncFlM7FwAahH3ftpUQsFzU5ZGa0l30KYDOO3pcKuVHRu2xgC2m-2L4g7PppQ69axlVYvOLm-r3dFxpD0ui7VktzsJ1QeSsPou7JUxXsUa_v1XuqhkKY4jzsnKxpMhvz3rb8KRQisA5TqExGO_F7Rc6qEJ6xA0pBUIKPyii1sPGVRS?purpose=inline)
+
+Checking Favorites status
+
+5. ¿A quién va dirigida?
+
+A estudiantes, trabajadores, compradores en línea y cualquier persona que utilice internet y quiera identificar posibles engaños digitales antes de compartir información o realizar una operación.
+
+![Cyber security Vector Icon Design Illustration](https://images.openai.com/static-rsc-4/8dsNhNAgCVQstOw8erTs1vSLL0dTmi7mWfnKnZarg_RLBZikdbAoGIo0Fjipzf-Em3c1BQKFUxq99ENAWoLMwpuC3Nj1nP67PuPgG91g4H98I0kaOZCWpKw_N5Ct9PCHNQaTU4rkL8-FhIvdxC3vq5cmIuhzOoTScuYzjN4sufJTuBe88Ix-3tkEPGE4hjQm?purpose=inline)
+
+Checking Favorites status
+
+6. Beneficios y confianza
+
+Explicar cómo puede ayudar a tomar decisiones más informadas, reconocer señales de alerta y desarrollar mejores hábitos de navegación. También deben indicar con claridad qué información procesa la extensión y cómo protege la privacidad, según las medidas que realmente implementen.
+
+![Nicaea – Nicaea - Digital Cybersecurity Template | Framplates](https://images.openai.com/static-rsc-4/VoXYj2PjyjrXki2w1uKhBPvAXZCSACxnO0B6xfz_u8WMBDzO_SlG-O-y9uYTyIV2Y4byl31k9f5DtE8w3ds8_26UH0y2TQN1ialvO1Igo0gc8jp7kod8cjml9vJ5A0GbEp0xkpNR1qfHHxUPXyjfNP68_Rt-fTCevG9XiO9OYC4?purpose=inline)
+
+Checking Favorites status
+
+7. Preguntas frecuentes y contacto
+
+Responder dudas como: ¿la extensión es gratuita?, ¿con qué navegadores funciona?, ¿qué sucede cuando detecta un enlace sospechoso? y ¿cómo puedo reportar un posible error? Las respuestas deben corresponder a las características reales del proyecto.
+
+# 2. Resumen bien estructurado de lo que tendría nuestra extensión
+
+Esta sería la descripción central del producto para utilizarla tanto en la página web como en su presentación de negocios.
+
+# Extensión de protección contra estafas digitales
+
+Seguridad preventiva durante la navegación web
+
+¿Qué es?
+
+Es una extensión para navegadores web diseñada para ayudar a las personas a reconocer posibles estafas digitales. Su propósito es identificar señales de riesgo en enlaces y páginas web, advertir al usuario y ofrecer información que le permita decidir si es seguro continuar.
+
+Funciones principales
+
+Análisis de enlaces y páginas web
+
+Examina indicadores de riesgo, como direcciones sospechosas, dominios que imitan a empresas conocidas y otros patrones asociados con posibles intentos de fraude.
+
+Alertas preventivas
+
+Muestra una advertencia cuando encuentra señales de riesgo para que el usuario tenga oportunidad de detenerse antes de ingresar información o continuar.
+
+Explicación del posible riesgo
+
+No se limita a mostrar una alerta: explica qué señales resultan sospechosas, para que la persona comprenda por qué debe tener precaución.
+
+Recomendaciones de seguridad
+
+Sugiere acciones concretas, como verificar el dominio oficial, no proporcionar contraseñas y contactar directamente a la empresa por sus canales oficiales.
+
+Reporte de sitios sospechosos
+
+Como función complementaria, permitiría que los usuarios reporten enlaces que consideren fraudulentos para facilitar su revisión y mejorar la detección.
+
+Objetivo principal
+
+Reducir el riesgo de que las personas sean víctimas de estafas digitales mediante una herramienta accesible que combine análisis preventivo, alertas comprensibles y orientación sobre seguridad en internet.
+
+Importante: estas son las funciones propuestas para el proyecto. No deben presentarlas como funciones ya implementadas hasta que las desarrollen y comprueben su funcionamiento. Una extensión tampoco puede garantizar que todas las estafas sean detectadas.
+
+# 3. ¿Cómo se vería la página al entrar?
+
+La distribución podría ser así:
+
+### Nombre de la extensión
+
+Navegación más segura
+
+# Antes de hacer clic, piensa en tu seguridad.
+
+Una extensión diseñada para ayudarte a reconocer posibles engaños digitales, detectar señales de riesgo y navegar con mayor confianza.
+
+Conoce cómo funciona
+
+![Dashlane’s AI model alerts businesses to phishing risks - Help Net Security](https://images.openai.com/static-rsc-4/hRtIoyxqI_ZQrtG5jCWON9vNP-r-a8k6k5WsxFgTcD1cbLKeKo5if63rokHqgSswWfPTw-fwdSlz6ymY_tnP8rW9Iw7WQ4koBbQcHZwyeF5Od-DQoHMJ9iCCi6mpMhe65xNo84t6b4CA3kyaoJPaOZFgZl04t1ZmoHIN_oZlbVA?purpose=inline)
+
+Checking Favorites status
+
+[helpnetsecurity](https://www.helpnetsecurity.com/2025/06/18/dashlane-ai-phishing-alerts/)
+
+## Tu seguridad comienza con la información
+
+Una vista previa de las funciones que se explicarían en la página.
+
+Detecta señales
+
+Identifica indicadores asociados con enlaces y páginas sospechosas.
+
+Te advierte
+
+Presenta alertas para ayudarte a actuar con precaución.
+
+Te explica
+
+Muestra las señales que justifican una advertencia.
+
+Te orienta
+
+Ofrece recomendaciones para evitar acciones riesgosas.
+
+## No necesitas ser experto en tecnología para protegerte.
+
+Queremos que cualquier persona pueda entender las señales de una posible estafa y tomar decisiones informadas al navegar por internet.
+
+Conoce el proyecto · Preguntas frecuentes · Contacto
+
+Esta es una propuesta visual de referencia, no una página funcional ni una extensión ya desarrollada.
+
+## 4. ¿Qué hace que el proyecto se vea profesional?
+
+Para que no parezca solamente una página informativa de una tarea escolar, les recomiendo que incluya tres elementos importantes:
+
+* Una demostración visual: mostrar cómo se vería una alerta real cuando la extensión encuentre un enlace sospechoso.
+
+* Un ejemplo de uso: presentar un mensaje falso de paquetería o un enlace que imita a un banco y explicar qué señales detectaría la herramienta.
+
+* Una explicación clara de sus límites: diferenciar entre un enlace confirmado como malicioso, uno que presenta señales sospechosas y uno que no muestra riesgos conocidos.
+
+La página web serviría para dar a conocer el producto, mientras que la extensión sería la herramienta que el usuario instala y utiliza al navegar. No necesitan que la página haga todo lo que hace la extensión; su función principal es presentar el proyecto, explicar sus beneficios y orientar al visitante sobre cómo utilizarlo.
+
+If you want, I can:
+
+* Sugiere el contenido para la sección 'Cómo usar VeriLink' en la página web
+
+* Propón un texto profesional para la sección de beneficios en la web
+
+* Elabora una introducción comercial para promocionar VeriLink
+

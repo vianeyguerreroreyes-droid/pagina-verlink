@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VeriLink — Identifica las señales de una estafa antes de hacer clic</title>
+  <meta name="description" content="VeriLink es una extensión de navegador que analiza enlaces, detecta señales sospechosas y explica el riesgo en palabras simples. Prototipo PMV versión 1.0.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 2.5 4.5 7v9.2c0 7 4.9 12.1 11.5 13.3 6.6-1.2 11.5-6.3 11.5-13.3V7L16 2.5Z' fill='%231B6DED'/><path d='m12.3 16.3 2.6 2.6 5-5.3' stroke='white' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio">
+        <svg class="brand-mark" width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 2.5 4.5 7v9.2c0 7 4.9 12.1 11.5 13.3 6.6-1.2 11.5-6.3 11.5-13.3V7L16 2.5Z" fill="#1B6DED"/>
+          <path d="m12.3 16.3 2.6 2.6 5-5.3" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-name">VeriLink</span>
+        <span class="brand-tag">PMV 1.0</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Principal">
+        <a href="#problema">El problema</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#funciones">Funciones</a>
+        <a href="#demo">Demo</a>
+        <a href="#limites">Límites</a>
+        <a href="#faq">Preguntas</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-primary btn-sm" href="#demo">Probar el analizador</a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ======================= HERO ======================= -->
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Extensión de navegador · Proyecto universitario</p>
+          <h1>Antes de hacer clic, piensa en tu seguridad.</h1>
+          <p class="lead">
+            VeriLink analiza la dirección de un enlace, identifica señales asociadas con
+            posibles estafas digitales y te explica el riesgo en palabras simples:
+            qué encontró, por qué importa y qué conviene hacer antes de continuar.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#demo">Probar el analizador</a>
+            <a class="btn btn-ghost" href="#como-funciona">
+              Ver cómo funciona
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+          <p class="hero-note">
+            Esta es la página de presentación del proyecto. El analizador de abajo es un
+            prototipo web: no es la extensión instalable todavía.
+          </p>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="browser">
+            <div class="browser-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="browser-url">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                https://banco-seguro-login.xyz/verificar
+              </span>
+            </div>
+            <div class="browser-body">
+              <div class="alert-card alert-high">
+                <div class="alert-head">
+                  <span class="risk-badge risk-high">Riesgo alto</span>
+                  <span class="alert-signals">3 señales encontradas</span>
+                </div>
+                <p class="alert-title">Este enlace imita el sitio de un banco conocido</p>
+                <ul class="alert-list">
+                  <li>El dominio contiene una marca conocida escrita de forma incorrecta.</li>
+                  <li>La terminación <code>.xyz</code> es común en sitios creados hace poco.</li>
+                  <li>La dirección incluye palabras como «verificar» y «login».</li>
+                </ul>
+                <div class="alert-advice">
+                  <strong>Recomendación:</strong> no ingreses contraseñas ni datos bancarios.
+                  Verifica la dirección desde la página oficial de la empresa.
+                </div>
+              </div>
+              <div class="alert-card alert-low">
+                <div class="alert-head">
+                  <span class="risk-badge risk-low">Riesgo bajo</span>
+                </div>
+                <p class="alert-title">No se detectaron señales conocidas de riesgo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= PROBLEMA ======================= -->
+    <section class="section section-alt" id="problema">
+      <div class="container split">
+        <div class="split-copy">
+          <p class="eyebrow">El problema</p>
+          <h2>Cada día llegan enlaces que imitan a marcas de confianza.</h2>
+          <p>
+            Mensajes de paquetería, avisos bancarios, promociones de tiendas y notificaciones
+            de redes sociales compiten por tu atención. Muchos llevan a páginas copias que
+            piden contraseñas, datos de tarjetas o pagos urgentes.
+          </p>
+          <p>
+            El engaño no se sostiene en la tecnología: se sostiene en la confianza, el miedo
+            y la prisa. Por eso el candado HTTPS y el aspecto cuidado de una página no bastan
+            para saber si alguien está detrás.
+          </p>
+          <ul class="check-list">
+            <li>Dominios que imitan el nombre de un banco, una tienda o una empresa de paquetería.</li>
+            <li>Mensajes que apuran con plazos, multas o cuentas bloqueadas.</li>
+            <li>Formularios que piden más datos de los que la gestión realmente necesita.</li>
+          </ul>
+        </div>
+
+        <div class="split-visual">
+          <div class="msg-card">
+            <div class="msg-head">
+              <span class="msg-avatar">P</span>
+              <div>
+                <strong>Paquetería Nacional</strong>
+                <span>Hoy · 10:42</span>
+              </div>
+            </div>
+            <p class="msg-body">
+              Su pedido #48291 está retenido en aduana. Debe pagar $1.50 de gastos de reenvío
+              en los próximos 2 horas o el paquete será devuelto:
+              <span class="msg-link">http://dhl-parcel-fee.click/pagar</span>
+            </p>
+            <div class="msg-analysis">
+              <p class="msg-analysis-title">Qué habría detectado VeriLink</p>
+              <ul>
+                <li><span class="tag tag-high">Alto</span> Dominio de una marca conocida dentro de una dirección sospechosa</li>
+                <li><span class="tag tag-high">Alto</span> Terminación <code>.click</code> poco habitual en empresas de mensajería</li>
+                <li><span class="tag tag-med">Medio</span> Urgencia artificial en el texto del mensaje</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CÓMO FUNCIONA ======================= -->
+    <section class="section" id="como-funciona">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Cómo funciona</p>
+          <h2>Tres pasos entre el enlace y tu decisión.</h2>
+          <p class="section-sub">
+            La extensión no juzga por ti: revisa la dirección, muestra lo que encontró y te
+            deja decidir con mejor información.
+          </p>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num">1</span>
+            <div class="step-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </div>
+            <h3>Pegas el enlace</h3>
+            <p>Recibes un mensaje con una dirección y quieres saber si es seguro abrirla. Copias la URL y la pegas en VeriLink.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">2</span>
+            <div class="step-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+            <h3>Analiza las señales</h3>
+            <p>Un motor de reglas revisa el dominio, la terminación, la estructura y compara con una lista de sitios reportados.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">3</span>
+            <div class="step-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <h3>Explica el resultado</h3>
+            <p>Muestra el nivel de riesgo, las señales encontradas y una recomendación concreta antes de que compartas datos.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ======================= FUNCIONES ======================= -->
+    <section class="section section-alt" id="funciones">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Funciones del PMV</p>
+          <h2>Cuatro funciones, un objetivo claro.</h2>
+          <p class="section-sub">
+            El alcance de la primera versión está deliberadamente acotado: demostrar la idea
+            principal sin convertirlo en un sistema de ciberseguridad completo.
+          </p>
+        </div>
+
+        <div class="cards-4">
+          <article class="card">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </div>
+            <h3>Analizador de enlaces</h3>
+            <p>Revisa dominios que imitan marcas conocidas, direcciones con estructuras extrañas y sitios incluidos en una lista de reportes.</p>
+            <span class="card-tag">Imprescindible</span>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
+            <h3>Alertas de seguridad</h3>
+            <p>Cuando encuentra señales de riesgo muestra una advertencia con el motivo, para que te detengas antes de ingresar información.</p>
+            <span class="card-tag">Imprescindible</span>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3>Explicación del riesgo</h3>
+            <p>No se queda en un color rojo o verde: describe qué encontró y qué debería hacer la persona antes de continuar.</p>
+            <span class="card-tag">Comprensión</span>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Retroalimentación</h3>
+            <p>Después del análisis puedes indicar si la advertencia fue útil o si consideras que el sitio es legítimo.</p>
+            <span class="card-tag">Validación</span>
+          </article>
+        </div>
+
+        <div class="feature-extra">
+          <div class="feature-extra-item">
+            <h4>Qué incluye la versión 1.0</h4>
+            <p>Campo para pegar una URL, botón de análisis, detección de señales por reglas, resultado visual con nivel de riesgo, recomendaciones y envío de opinión.</p>
+          </div>
+          <div class="feature-extra-item">
+            <h4>Qué queda para después</h4>
+            <p>Bloqueo automático de sitios, análisis de mensajes de mensajería instantánea, detección de archivos maliciosos y modelos de inteligencia artificial avanzada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= DEMO ======================= -->
+    <section class="section" id="demo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Demostración funcional</p>
+          <h2>Prueba el analizador de VeriLink.</h2>
+          <p class="section-sub">
+            Pega cualquier dirección y ejecuta el análisis. Todo se calcula en tu navegador
+            con un conjunto de reglas de demostración: ninguna URL sale de este equipo.
+          </p>
+        </div>
+
+        <div class="demo-panel">
+          <form class="demo-form" id="demo-form" novalidate>
+            <label class="demo-label" for="url-input">Dirección a analizar</label>
+            <div class="demo-row">
+              <input
+                type="text"
+                id="url-input"
+                name="url"
+                class="demo-input"
+                placeholder="https://ejemplo.com/pagina"
+                autocomplete="off"
+                spellcheck="false"
+              >
+              <button type="submit" class="btn btn-primary" id="analyze-btn">Analizar enlace</button>
+            </div>
+            <div class="demo-samples">
+              <span>Prueba con:</span>
+              <button type="button" class="chip" data-url="https://www.paypal.com/signin">Sitio legítimo</button>
+              <button type="button" class="chip" data-url="https://banco-seguro-login.xyz/verificar">Dominio falso</button>
+              <button type="button" class="chip" data-url="http://192.168.1.20/bbva/login">Dirección IP</button>
+              <button type="button" class="chip" data-url="https://bit.ly/3xKd9Pq">Acortador</button>
+            </div>
+          </form>
+
+          <div class="demo-result" id="demo-result" aria-live="polite">
+            <div class="demo-empty" id="demo-empty">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <p>El resultado del análisis aparecerá aquí.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="demo-disclaimer">
+          Prototipo web con fines académicos. Las reglas aplicadas son ilustrativas y no
+          reemplazan a un servicio especializado de reputación de URL.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================= PÚBLICO Y BENEFICIOS ======================= -->
+    <section class="section section-alt" id="beneficios">
+      <div class="container split split-wide">
+        <div class="split-copy">
+          <p class="eyebrow">A quién va dirigida</p>
+          <h2>A cualquier persona que navegue y quiera decidir con calma.</h2>
+          <p>
+            Estudiantes, trabajadores, compradores en línea y quienes administran las
+            cuentas familiares. No hace experiencia técnica: la interfaz traduce las señales
+            de riesgo a recomendaciones concretas.
+          </p>
+          <ul class="benefit-list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Decisiones más informadas</strong><span>Sabes por qué un enlace merece precaución, no solo que «algo falló».</span></div>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Reconocer señales de alerta</strong><span>Con el tiempo identificas por tu cuenta las marcas de un engaño.</span></div>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Mejores hábitos de navegación</strong><span>Verificas el dominio oficial antes de entregar contraseñas o pagos.</span></div>
+            </li>
+          </ul>
+          <div class="audience-tags">
+            <span>Estudiantes</span><span>Trabajadores</span><span>Compradores en línea</span><span>Usuarios casuales</span>
+          </div>
+        </div>
+
+        <div class="split-visual">
+          <div class="privacy-card">
+            <div class="privacy-head">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <h3>Qué información procesa</h3>
+            </div>
+            <dl>
+              <div><dt>Solo la URL que pegas</dt><dd>El texto de la dirección es lo único que se analiza.</dd></div>
+              <div><dt>Análisis local en el prototipo</dt><dd>Las reglas se ejecutan en tu navegador; no hay envío a un servidor.</dd></div>
+              <div><dt>Sin cuentas ni historial</dt><dd>No se pide registro ni se copia tu historial de navegación.</dd></div>
+            </dl>
+            <p class="privacy-note">
+              En la extensión instalable, los permisos definitivos se publicarán en el
+              manifiesto de Chrome (Manifest V3) antes de su distribución.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= LÍMITES ======================= -->
+    <section class="section" id="limites">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Transparencia</p>
+          <h2>Qué puede y qué no puede decir VeriLink.</h2>
+          <p class="section-sub">
+            Un análisis por reglas no garantiza detectar una estafa. Diferenciar estos tres
+            estados es la parte más importante de la herramienta.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <article class="card card-state">
+            <span class="state-dot state-high"></span>
+            <h3>Confirmado como malicioso</h3>
+            <p>El dominio aparece en una lista de sitios reportados. El riesgo está respaldado por un reporte externo, no solo por una regla.</p>
+          </article>
+          <article class="card card-state">
+            <span class="state-dot state-med"></span>
+            <h3>Presenta señales sospechosas</h3>
+            <p>La dirección cumple patrones asociados con fraudes: imita una marca, usa terminaciones raras o tiene una estructura inusual.</p>
+          </article>
+          <article class="card card-state">
+            <span class="state-dot state-low"></span>
+            <h3>Sin riesgos conocidos</h3>
+            <p>No se encontraron señales en las reglas actuales. Eso no convierte el sitio en seguro: solo indica ausencia de alertas conocidas.</p>
+          </article>
+        </div>
+
+        <div class="callout">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <p>
+            El candado HTTPS tampoco garantiza que una página sea legítimo: cualquier sitio
+            puede obtener un certificado. Para una detección más confiable, una versión
+            posterior podría consultarse con una fuente externa de reputación de URL.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= FAQ ======================= -->
+    <section class="section section-alt" id="faq">
+      <div class="container faq-grid">
+        <div class="faq-intro">
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2>Dudas habituales sobre el proyecto.</h2>
+          <p>Si tu pregunta no está aquí, escríbenos y la agregamos a la siguiente versión de la página.</p>
+          <a class="btn btn-ghost" href="#contacto">Contactar al equipo</a>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>¿VeriLink es gratuita?<span class="faq-chevron"></span></summary>
+            <p>Sí. El proyecto se desarrolla como herramienta educativa y de acceso abierto, sin planes de pago ni cuentas de usuario.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Con qué navegadores funciona?<span class="faq-chevron"></span></summary>
+            <p>La primera versión está pensada para Google Chrome mediante Manifest V3. Adaptarla a Firefox o Edge está entre los siguientes pasos.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Qué sucede cuando detecta un enlace sospechoso?<span class="faq-chevron"></span></summary>
+            <p>Muestra una advertencia con el nivel de riesgo, las señales que justifican la alerta y una recomendación concreta. Nunca bloquea el sitio por ti: la decisión final es del usuario.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Garantiza detectar todas las estafas?<span class="faq-chevron"></span></summary>
+            <p>No. Ninguna herramienta lo hace. VeriLink reduce el riesgo al mostrarte señales y buenas prácticas, pero un enlace sin señales conocidas puede seguir siendo peligroso.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Qué datos recopila?<span class="faq-chevron"></span></summary>
+            <p>En este prototipo web, ninguno: el análisis se ejecuta en tu navegador sobre la URL que pegas. La extensión instalará únicamente los permisos declarados en su manifiesto.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Cómo reporto un error o un falso positivo?<span class="faq-chevron"></span></summary>
+            <p>Puedes usar el botón de retroalimentación después de cada análisis o escribirnos directamente. Esos reportes alimentan el ajuste de las reglas.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CTA / CONTACTO ======================= -->
+    <section class="section cta" id="contacto">
+      <div class="container cta-inner">
+        <div>
+          <p class="eyebrow eyebrow-light">Próximo paso</p>
+          <h2>Tu seguridad comienza con la información.</h2>
+          <p>
+            Prueba el analizador, comparte tu impresión y ayúdanos a decidir qué reglas
+            ajustar antes de convertir el prototipo en una extensión instalable.
+          </p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-white" href="#demo">Probar el analizador</a>
+          <a class="btn btn-outline-light" href="mailto:contacto@verilink.example">contacto@verilink.example</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="#inicio">
+          <svg class="brand-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M16 2.5 4.5 7v9.2c0 7 4.9 12.1 11.5 13.3 6.6-1.2 11.5-6.3 11.5-13.3V7L16 2.5Z" fill="#1B6DED"/>
+            <path d="m12.3 16.3 2.6 2.6 5-5.3" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="brand-name">VeriLink</span>
+        </a>
+        <p>Seguridad preventiva durante la navegación web. Proyecto académico en fase de prototipo.</p>
+      </div>
+
+      <div class="footer-cols">
+        <div>
+          <h4>Producto</h4>
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#funciones">Funciones</a>
+          <a href="#demo">Demostración</a>
+        </div>
+        <div>
+          <h4>Proyecto</h4>
+          <a href="#limites">Límites</a>
+          <a href="#faq">Preguntas frecuentes</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 VeriLink · PMV versión 1.0</span>
+      <span>Esta página presenta un prototipo; la extensión aún no está publicada en la Chrome Web Store.</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
